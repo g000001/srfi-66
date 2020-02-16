@@ -1,8 +1,8 @@
-(cl:in-package :srfi-66.internal)
+(cl:in-package "https://github.com/g000001/srfi-66#internals")
 
-(def-suite srfi-66)
 
-(in-suite srfi-66)
+(def-suite* srfi-66)
+
 
 (test u8vector
   (is-true (u8vector?
@@ -47,4 +47,5 @@
     (is (u8vector=? u8v
                     (u8vector-copy u8v) ))))
 
-;;; eof
+
+;;; *EOF*

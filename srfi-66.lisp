@@ -1,6 +1,7 @@
 ;;;; srfi-66.lisp
 
-(cl:in-package :srfi-66.internal)
+(cl:in-package "https://github.com/g000001/srfi-66#internals")
+
 
 #|(define-function (u8vector? vec)
   (every (lambda (x) (typep x '(unsigned-byte 8)))
@@ -42,6 +43,7 @@
   (ensure-octet octet)
   (vector-set! u8vector k octet))|#
 
+
 (define-function (u8vector-copy! source source-start target target-start count)
   (if (>= source-start target-start)
       (do ((i 0 (+ i 1)))
@@ -55,11 +57,13 @@
                           (+ target-start i)
                           (u8vector-ref source (+ source-start i))))))
 
+
 (define-function (u8vector-copy u8vector)
   (let* ((size (u8vector-length u8vector))
 	 (copy (make-u8vector size 0)))
     (u8vector-copy! u8vector 0 copy 0 size)
     copy))
+
 
 (define-function (u8vector=? u8vector-1 u8vector-2)
   (let ((size (u8vector-length u8vector-1)))
@@ -71,6 +75,7 @@
                                 (u8vector-ref u8vector-2 i))
                              (loop (+ 1 i))))))
            (loop 0)))))
+
 
 (define-function (u8vector-compare u8vector-1 u8vector-2)
   (let ((length-1 (u8vector-length u8vector-1))
@@ -90,4 +95,5 @@
                               (:else (loop (+ i 1))))))))
          (loop 0))))))
 
-;;; eof
+
+;;; *EOF*

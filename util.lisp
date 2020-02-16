@@ -1,4 +1,5 @@
-(cl:in-package :srfi-66.internal)
+(cl:in-package "https://github.com/g000001/srfi-66#internals")
+
 
 (progn
   (setf (fdefinition 'eq?) #'eq)
@@ -16,12 +17,17 @@
   (setf (fdefinition 'exact?) #'rationalp)
   )
 
+
 (declaim (inline list-tail vector-set!))
+
+
 (defun list-tail (list k)
   (nthcdr k list))
 
+
 (defun vector-set! (vec index val)
   (setf (aref vec index) val))
+
 
 (defun to-proper-lambda-list (list)
   (typecase list
@@ -34,15 +40,18 @@
                     ,(cdr last)))))
     (symbol `(cl:&rest ,list))))
 
+
 (defmacro lambda (args &rest body)
   `(cl:lambda ,(to-proper-lambda-list args)
      ,@body))
+
 
 (defmacro define-function (name-args &body body)
   (destructuring-bind (name . args)
                       name-args
     `(defun ,name ,(to-proper-lambda-list args)
        ,@body)))
+
 
 (defmacro letrec ((&rest binds) &body body)
   `(let (,@(mapcar (cl:lambda (x)
@@ -69,3 +78,6 @@
       `(progn
          (setf (fdefinition ',name-args)
                ,(car body)))))
+
+
+;;; *EOF*

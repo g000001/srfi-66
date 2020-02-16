@@ -1,4 +1,8 @@
-* SRFI-66: Octet Vectors
+# SRFI 66 for CL: Octet Vectors
+
+* https://srfi.schemers.org/srfi-66
+* License: Unlicense
+
 - Copyright (C) Michael Sperber (2005). All Rights Reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining
